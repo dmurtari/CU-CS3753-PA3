@@ -19,6 +19,7 @@
 #include <sched.h>
 
 #define DEFAULT_ITERATIONS 1000000
+#define DEFAULT_FORKS 10
 #define RADIUS (RAND_MAX / 2)
 
 inline double dist(double x0, double y0, double x1, double y1){
@@ -32,6 +33,8 @@ inline double zeroDist(double x, double y){
 int main(int argc, char* argv[]){
 
   long i;
+  int j;
+  int numProcesses;
   long iterations;
   struct sched_param param;
   int policy;
@@ -51,7 +54,12 @@ int main(int argc, char* argv[]){
   if(argc < 3){
     policy = SCHED_OTHER;
   }
-  
+ 
+  /* Set default number of forks if not supplied */
+  if(argc < 4){
+    numProcesses = DEFAULT_FORKS;
+  }
+     
   /* Set iterations if supplied */
   if(argc > 1){
     iterations = atol(argv[1]);
@@ -78,7 +86,12 @@ int main(int argc, char* argv[]){
     }
   }
   
-  /* Set process to max prioty for given scheduler */
+  /* Set number of processes if supplied */
+  if(argc > 3){
+    numProcesses = atol(argv[3]);
+  }
+
+  /* Set process to max priority for given scheduler */
   param.sched_priority = sched_get_priority_max(policy);
   
   /* Set new scheduler policy */
@@ -90,22 +103,37 @@ int main(int argc, char* argv[]){
   }
   fprintf(stdout, "New Scheduling Policy: %d\n", sched_getscheduler(0));
 
-  /* Calculate pi using statistical methode across all iterations*/
-  for(i=0; i<iterations; i++){
-    x = (random() % (RADIUS * 2)) - RADIUS;
-    y = (random() % (RADIUS * 2)) - RADIUS;
-    if(zeroDist(x,y) < RADIUS){
-      inCircle++;
+  for(j=0; j<numProcesses; j++){
+    pid = fork()
+    if(pid == 0){
+      /* Calculate pi using statistical methode across all iterations*/
+      for(i=0; i<iterations; i++){
+        x = (random() % (RADIUS * 2)) - RADIUS;
+        y = (random() % (RADIUS * 2)) - RADIUS;
+        if(zeroDist(x,y) < RADIUS){
+          inCircle++;
+        }
+        inSquare++;
+      }
+
+      /* Finish calculation */
+      pCircle = inCircle/inSquare;
+      piCalc = pCircle * 4.0;
+
+      /* Print result */
+      fprintf(stdout, "pi = %f\n", piCalc);
+      exit(EXIT_SUCCESS);
+    } else if(pid > 0) {
+      printf("Forked child %d", pid);
+    } else {
+      fprintf(stderr, "Forking failed");
+      exit(EXIT_FAILURE);
     }
-    inSquare++;
   }
 
-  /* Finish calculation */
-  pCircle = inCircle/inSquare;
-  piCalc = pCircle * 4.0;
-
-  /* Print result */
-  fprintf(stdout, "pi = %f\n", piCalc);
-
+  for(j=0; j<numProcesses; j++){
+    wait(NULL);  
+  }
+  
   return 0;
 }
