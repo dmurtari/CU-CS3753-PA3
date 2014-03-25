@@ -21,6 +21,7 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include <sched.h>
 
 /* Local Defines */
 #define MAXFILENAMELENGTH 80
@@ -32,6 +33,7 @@
 int main(int argc, char* argv[]){
 
   int rv;
+  int policy;
   int inputFD;
   int outputFD;
   char inputFilename[MAXFILENAMELENGTH];
@@ -49,8 +51,8 @@ int main(int argc, char* argv[]){
   ssize_t bytesWritten = 0;
   ssize_t totalBytesWritten = 0;
   int totalWrites = 0;
-  int inputFileResets = 0;
-
+  int inputFileResets = 0
+  
   /* Process program arguments to select run-time parameters */
   /* Set supplied transfer size or default if not supplied */
   if(argc < 2){
@@ -75,9 +77,29 @@ int main(int argc, char* argv[]){
       exit(EXIT_FAILURE);
     }
   }
-  
-  /* Set supplied input filename or default if not supplied */
+
+  /* Set policy if supplied */
   if(argc < 4){
+    policy = SCHED_OTHER
+  }
+  else{
+    if(!strcmp(argv[3], "SCHED_OTHER")){
+      policy = SCHED_OTHER;
+    }
+    else if(!strcmp(argv[3], "SCHED_FIFO")){
+      policy = SCHED_FIFO;
+    }
+    else if(!strcmp(argv[3], "SCHED_RR")){
+      policy = SCHED_RR;
+    }
+    else{
+      fprintf(stderr, "Un-handled scheduling policy\n");
+      exit(EXIT_FAILURE);
+    }
+  }
+
+  /* Set supplied input filename or default if not supplied */
+  if(argc < 5){
     if(strnlen(DEFAULT_INPUTFILENAME, MAXFILENAMELENGTH) >= MAXFILENAMELENGTH){
       fprintf(stderr, "Default input filename too long\n");
       exit(EXIT_FAILURE);
@@ -93,7 +115,7 @@ int main(int argc, char* argv[]){
   }
   
   /* Set supplied output filename base or default if not supplied */
-  if(argc < 5){
+  if(argc < 6){
     if(strnlen(DEFAULT_OUTPUTFILENAMEBASE, MAXFILENAMELENGTH) >= MAXFILENAMELENGTH){
       fprintf(stderr, "Default output filename base too long\n");
       exit(EXIT_FAILURE);
@@ -118,6 +140,18 @@ int main(int argc, char* argv[]){
     exit(EXIT_FAILURE);
   }
 
+  /* Set process to max prioty for given scheduler */
+  param.sched_priority = sched_get_priority_max(policy);
+  
+  /* Set new scheduler policy */
+  fprintf(stdout, "Current Scheduling Policy: %d\n", sched_getscheduler(0));
+  fprintf(stdout, "Setting Scheduling Policy to: %d\n", policy);
+  if(sched_setscheduler(0, policy, &param)){
+    perror("Error setting scheduler policy");
+    exit(EXIT_FAILURE);
+  }
+  fprintf(stdout, "New Scheduling Policy: %d\n", sched_getscheduler(0));
+
   /* Allocate buffer space */
   buffersize = blocksize;
   if(!(transferBuffer = malloc(buffersize*sizeof(*transferBuffer)))){
@@ -135,7 +169,7 @@ int main(int argc, char* argv[]){
   rv = snprintf(outputFilename, MAXFILENAMELENGTH, "%s-%d",
     outputFilenameBase, getpid());    
   if(rv > MAXFILENAMELENGTH){
-    fprintf(stderr, "Output filenmae length exceeds limit of %d characters.\n",
+    fprintf(stderr, "Output filename length exceeds limit of %d characters.\n",
     MAXFILENAMELENGTH);
     exit(EXIT_FAILURE);
   }
