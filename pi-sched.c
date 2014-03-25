@@ -17,6 +17,9 @@
 #include <math.h>
 #include <errno.h>
 #include <sched.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
 
 #define DEFAULT_ITERATIONS 1000000
 #define DEFAULT_FORKS 10
@@ -43,6 +46,8 @@ int main(int argc, char* argv[]){
   double inSquare = 0.0;
   double pCircle = 0.0;
   double piCalc = 0.0;
+  pid_t pid;
+
 
   /* Process program arguments to select iterations and policy */
   /* Set default iterations if not supplied */
@@ -104,7 +109,7 @@ int main(int argc, char* argv[]){
   fprintf(stdout, "New Scheduling Policy: %d\n", sched_getscheduler(0));
 
   for(j=0; j<numProcesses; j++){
-    pid = fork()
+    pid = fork();
     if(pid == 0){
       /* Calculate pi using statistical methode across all iterations*/
       for(i=0; i<iterations; i++){
