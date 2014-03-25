@@ -6,8 +6,8 @@
  * Create Date: 2012/03/07
  * Modify Date: 2014/03/19
  * Description:
- * 	This file contains a simple program for statistically
- *      calculating pi using a specific scheduling policy.
+ * 	This file contains a simple program for statistically calculating pi using a
+ *  specific scheduling policy. 
  */
 
 /* Local Includes */
