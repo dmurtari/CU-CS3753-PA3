@@ -202,10 +202,6 @@ int main(int argc, char* argv[]){
         exit(EXIT_FAILURE);
       }
 
-      /* Print Status */
-      fprintf(stdout, "Reading from %s and writing to %s\n",
-        inputFilename, outputFilename);
-
       /* Read from input file and write to output file*/
       do{
         /* Read transfersize bytes from input file*/
@@ -242,16 +238,6 @@ int main(int argc, char* argv[]){
 
       }while(totalBytesWritten < transfersize);
 
-      /* Output some possibly helpfull info to make it seem like we were doing stuff */
-      fprintf(stdout, "Read:    %zd bytes in %d reads\n",
-        totalBytesRead, totalReads);
-      fprintf(stdout, "Written: %zd bytes in %d writes\n",
-        totalBytesWritten, totalWrites);
-      fprintf(stdout, "Read input file in %d pass%s\n",
-        (inputFileResets + 1), (inputFileResets ? "es" : ""));
-      fprintf(stdout, "Processed %zd bytes in blocks of %zd bytes\n",
-        transfersize, blocksize);
-
       /* Free Buffer */
       free(transferBuffer);
 
@@ -266,8 +252,10 @@ int main(int argc, char* argv[]){
         perror("Failed to close input file");
         exit(EXIT_FAILURE);
       }
+
+      exit(EXIT_SUCCESS);
     } else if(pid > 0) {
-      printf("Forked child %d", pid);
+      printf("Forked child %d \n", pid);
     } else {
       perror("Forking failed: ");
       exit(EXIT_FAILURE);

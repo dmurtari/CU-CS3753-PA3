@@ -129,7 +129,7 @@ int main(int argc, char* argv[]){
       fprintf(stdout, "pi = %f\n", piCalc);
       exit(EXIT_SUCCESS);
     } else if(pid > 0) {
-      printf("Forked child %d", pid);
+      printf("Forked child %d \n", pid);
     } else {
       fprintf(stderr, "Forking failed");
       exit(EXIT_FAILURE);
