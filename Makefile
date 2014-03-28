@@ -12,7 +12,7 @@ INPUTBLOCKS = $(shell echo $(INPUTFILESIZEBYTES)\/$(INPUTBLOCKSIZEBYTES) | bc)
 
 .PHONY: all clean
 
-all: pi pi-sched rw-sched rr_quantum
+all: pi pi-sched rw-sched mix-sched rr_quantum
 
 pi: pi.o
 	$(CC) $(LFLAGS) $^ -o $@ -lm
