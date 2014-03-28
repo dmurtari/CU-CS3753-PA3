@@ -58,3 +58,4 @@ clean: testclean
 
 testclean:
 	rm -f rwoutput*
+	rm -f mixoutput*
