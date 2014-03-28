@@ -26,6 +26,8 @@
 
 /* Local Defines */
 #define MAXFILENAMELENGTH 80
+#define DEFAULT_BLOCKSIZE 1024
+#define DEFAULT_TRANSFERSIZE 1024*100
 #define DEFAULT_OUTPUTFILENAMEBASE "mixoutput"
 #define DEFAULT_ITERATIONS 1000000
 #define DEFAULT_FORKS 10
@@ -50,6 +52,11 @@ int int main (int argc, char const *argv[]){
   int outputFD;
   char outputFilename[MAXFILENAMELENGTH];
   char outputFilenameBase[MAXFILENAMELENGTH];
+  ssize_t transfersize = DEFAULT_TRANSFERSIZE;
+  ssize_t blocksize = DEFAULT_BLOCKSIZE; 
+  char* transferBuffer = NULL;
+  char* writeData = "This is rata to write to the file"
+  ssize_t buffersize;
   
   long i, j;
   double x, y;
@@ -132,6 +139,14 @@ int int main (int argc, char const *argv[]){
     pid = fork();
     if(pid == 0){
       
+      /* Allocate buffer space */
+      buffersize = blocksize;
+      if(!(transferBuffer = malloc(buffersize*sizeof(*transferBuffer)))){
+        perror("Failed to allocate transfer buffer");
+        exit(EXIT_FAILURE);
+      }
+      strcopy(transferBuffer, writeData);
+      
       /* Open Output File Descriptor in Write Only mode with standard permissions*/
       rv = snprintf(outputFilename, MAXFILENAMELENGTH, "%s-%d",
         outputFilenameBase, getpid());    
@@ -158,7 +173,7 @@ int int main (int argc, char const *argv[]){
           inCircle++;
         }
         inSquare++;
-        fprintf(outputFD, "This is random rate being written");
+        write(outputFD, transferBuffer, bytesRead);
       }
 
       /* Finish calculation */
