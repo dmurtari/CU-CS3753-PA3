@@ -182,7 +182,7 @@ int int main (int argc, char const *argv[]){
 
       /* Print result */
       fprintf(stdout, "pi = %f\n", piCalc);
-      
+      free(transferBuffer);
       exit(EXIT_SUCCESS);
     } else if(pid > 0) {
       printf("Forked child %d\n", pid);
