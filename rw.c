@@ -25,6 +25,7 @@
 #include <sys/wait.h>
 #include <sched.h>
 
+
 /* Local Defines */
 #define MAXFILENAMELENGTH 80
 #define DEFAULT_INPUTFILENAME "rwinput"
@@ -49,6 +50,8 @@ int main(int argc, char* argv[]){
   ssize_t blocksize = 0; 
   char* transferBuffer = NULL;
   ssize_t buffersize;
+  struct sched_param param;
+  pid_t pid;
 
   ssize_t bytesRead = 0;
   ssize_t totalBytesRead = 0;
@@ -85,7 +88,7 @@ int main(int argc, char* argv[]){
 
   /* Set policy if supplied */
   if(argc < 4){
-    policy = SCHED_OTHER
+    policy = SCHED_OTHER;
   }
   else{
     if(!strcmp(argv[3], "SCHED_OTHER")){
@@ -105,10 +108,10 @@ int main(int argc, char* argv[]){
   
   /* Set number of forks if supplied */
   if(argc < 5){
-    numprocesses = DEFAULT_FORKS;
+    numProcesses = DEFAULT_FORKS;
   }
   else{
-    atol(argv[4]);
+    numProcesses = atol(argv[4]);
   }
 
   /* Set supplied input filename or default if not supplied */
