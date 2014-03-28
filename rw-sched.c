@@ -115,7 +115,7 @@ int main(int argc, char* argv[]){
   }
 
   /* Set supplied input filename or default if not supplied */
-  if(argc < 5){
+  if(argc < 6){
     if(strnlen(DEFAULT_INPUTFILENAME, MAXFILENAMELENGTH) >= MAXFILENAMELENGTH){
       fprintf(stderr, "Default input filename too long\n");
       exit(EXIT_FAILURE);
@@ -123,7 +123,7 @@ int main(int argc, char* argv[]){
     strncpy(inputFilename, DEFAULT_INPUTFILENAME, MAXFILENAMELENGTH);
   }
   else{
-    if(strnlen(argv[3], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH){
+    if(strnlen(argv[5], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH){
       fprintf(stderr, "Input filename too long\n");
       exit(EXIT_FAILURE);
     }
@@ -131,7 +131,7 @@ int main(int argc, char* argv[]){
   }
   
   /* Set supplied output filename base or default if not supplied */
-  if(argc < 6){
+  if(argc < 7){
     if(strnlen(DEFAULT_OUTPUTFILENAMEBASE, MAXFILENAMELENGTH) >= MAXFILENAMELENGTH){
       fprintf(stderr, "Default output filename base too long\n");
       exit(EXIT_FAILURE);
@@ -139,7 +139,7 @@ int main(int argc, char* argv[]){
     strncpy(outputFilenameBase, DEFAULT_OUTPUTFILENAMEBASE, MAXFILENAMELENGTH);
   }
   else{
-    if(strnlen(argv[4], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH){
+    if(strnlen(argv[6], MAXFILENAMELENGTH) >= MAXFILENAMELENGTH){
       fprintf(stderr, "Output filename base is too long\n");
       exit(EXIT_FAILURE);
     }
