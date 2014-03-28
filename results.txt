@@ -1,0 +1,194 @@
+Testing CPU Intensive Process
+Calculating pi over 100000000 iterations using SCHED_FIFO with 10 simultaneous processes...
+wall=17.34 user=50.66 system=0.15 CPU=292% i-switched=44 v-switched=17
+wall=16.95 user=51.84 system=0.22 CPU=307% i-switched=42 v-switched=17
+wall=16.61 user=53.79 system=0.21 CPU=325% i-switched=47 v-switched=17
+wall=16.10 user=53.69 system=0.22 CPU=334% i-switched=46 v-switched=17
+wall=16.93 user=57.53 system=0.34 CPU=341% i-switched=51 v-switched=17
+
+Calculating pi over 100000000 iterations using SCHED_FIFO with 50 simultaneous processes...
+wall=86.76 user=314.41 system=1.80 CPU=364% i-switched=319 v-switched=57
+wall=83.57 user=310.08 system=1.71 CPU=373% i-switched=315 v-switched=57
+wall=77.12 user=284.33 system=1.28 CPU=370% i-switched=286 v-switched=57
+wall=88.08 user=316.75 system=1.01 CPU=360% i-switched=322 v-switched=57
+wall=78.38 user=277.94 system=1.10 CPU=356% i-switched=278 v-switched=57
+
+Calculating pi over 100000000 iterations using SCHED_FIFO with 100 simultaneous processes...
+wall=172.38 user=643.74 system=3.27 CPU=375% i-switched=671 v-switched=107
+wall=180.28 user=673.82 system=2.68 CPU=375% i-switched=702 v-switched=107
+wall=177.01 user=664.32 system=2.53 CPU=376% i-switched=690 v-switched=107
+wall=148.02 user=549.93 system=2.48 CPU=373% i-switched=571 v-switched=107
+wall=148.01 user=550.18 system=2.32 CPU=373% i-switched=566 v-switched=107
+
+Calculating pi over 100000000 iterations using SCHED_OTHER with 10 simultaneous processes...
+wall=14.28 user=56.26 system=0.24 CPU=395% i-switched=5961 v-switched=23
+wall=14.79 user=58.03 system=0.23 CPU=393% i-switched=6348 v-switched=23
+wall=14.43 user=56.85 system=0.20 CPU=395% i-switched=6153 v-switched=22
+wall=16.20 user=63.19 system=0.42 CPU=392% i-switched=6637 v-switched=23
+wall=16.59 user=64.73 system=0.55 CPU=393% i-switched=6661 v-switched=23
+
+Calculating pi over 100000000 iterations using SCHED_OTHER with 50 simultaneous processes...
+wall=71.86 user=284.99 system=0.84 CPU=397% i-switched=69536 v-switched=103
+wall=69.73 user=276.94 system=0.64 CPU=398% i-switched=68530 v-switched=103
+wall=72.08 user=285.90 system=0.73 CPU=397% i-switched=70559 v-switched=103
+wall=77.60 user=306.61 system=1.34 CPU=396% i-switched=72851 v-switched=103
+wall=76.83 user=303.18 system=1.44 CPU=396% i-switched=72033 v-switched=103
+
+Calculating pi over 100000000 iterations using SCHED_OTHER with 100 simultaneous processes...
+wall=143.74 user=570.52 system=1.45 CPU=397% i-switched=141154 v-switched=202
+wall=154.60 user=610.72 system=2.68 CPU=396% i-switched=144952 v-switched=203
+wall=149.70 user=592.16 system=2.31 CPU=397% i-switched=142460 v-switched=203
+wall=139.90 user=556.29 system=1.07 CPU=398% i-switched=138225 v-switched=203
+wall=140.20 user=557.44 system=1.06 CPU=398% i-switched=138606 v-switched=203
+
+Calculating pi over 100000000 iterations using SCHED_RR with 10 simultaneous processes...
+wall=16.48 user=54.49 system=0.20 CPU=331% i-switched=188 v-switched=20
+wall=15.86 user=53.52 system=0.24 CPU=338% i-switched=180 v-switched=19
+wall=15.95 user=53.42 system=0.22 CPU=336% i-switched=180 v-switched=19
+wall=16.04 user=53.70 system=0.19 CPU=336% i-switched=186 v-switched=21
+wall=16.32 user=54.90 system=0.19 CPU=337% i-switched=182 v-switched=19
+
+Calculating pi over 100000000 iterations using SCHED_RR with 50 simultaneous processes...
+wall=74.71 user=276.04 system=1.26 CPU=371% i-switched=1038 v-switched=72
+wall=74.74 user=272.94 system=1.22 CPU=366% i-switched=1039 v-switched=79
+wall=74.03 user=277.63 system=1.19 CPU=376% i-switched=1029 v-switched=75
+wall=74.92 user=275.72 system=1.28 CPU=369% i-switched=1042 v-switched=78
+wall=75.01 user=272.88 system=1.28 CPU=365% i-switched=1035 v-switched=76
+
+Calculating pi over 100000000 iterations using SCHED_RR with 100 simultaneous processes...
+wall=152.85 user=577.31 system=1.78 CPU=378% i-switched=2186 v-switched=162
+wall=155.04 user=580.66 system=2.03 CPU=375% i-switched=2177 v-switched=170
+wall=153.90 user=581.39 system=2.00 CPU=379% i-switched=2160 v-switched=139
+wall=149.66 user=559.15 system=1.80 CPU=374% i-switched=2004 v-switched=135
+wall=147.74 user=555.54 system=2.59 CPU=377% i-switched=1984 v-switched=159
+
+============================
+Testing I/O Intensive Process
+Reading and writing using SCHED_FIFO with 10 simultaneous processes...
+wall=0.39 user=0.00 system=0.12 CPU=31% i-switched=2 v-switched=2928
+wall=0.39 user=0.00 system=0.08 CPU=23% i-switched=2 v-switched=2990
+wall=0.50 user=0.00 system=0.10 CPU=22% i-switched=2 v-switched=3830
+wall=0.24 user=0.00 system=0.05 CPU=24% i-switched=2 v-switched=2017
+wall=0.25 user=0.00 system=0.05 CPU=25% i-switched=2 v-switched=2031
+
+Reading and writing using SCHED_FIFO with 50 simultaneous processes...
+wall=1.13 user=0.05 system=0.18 CPU=20% i-switched=2 v-switched=16339
+wall=0.90 user=0.05 system=0.18 CPU=26% i-switched=2 v-switched=10322
+wall=0.91 user=0.03 system=0.20 CPU=26% i-switched=2 v-switched=10300
+wall=0.82 user=0.04 system=0.18 CPU=27% i-switched=2 v-switched=10087
+wall=1.30 user=0.06 system=0.15 CPU=16% i-switched=2 v-switched=17177
+
+Reading and writing using SCHED_FIFO with 100 simultaneous processes...
+wall=1.41 user=0.08 system=0.36 CPU=31% i-switched=2 v-switched=22632
+wall=1.37 user=0.07 system=0.38 CPU=33% i-switched=2 v-switched=22643
+wall=1.39 user=0.06 system=0.38 CPU=31% i-switched=2 v-switched=24015
+wall=1.87 user=0.04 system=0.80 CPU=45% i-switched=2 v-switched=29981
+wall=1.85 user=0.06 system=0.92 CPU=52% i-switched=2 v-switched=31203
+
+Reading and writing using SCHED_OTHER with 10 simultaneous processes...
+wall=0.75 user=0.00 system=0.56 CPU=75% i-switched=47 v-switched=3482
+wall=0.62 user=0.00 system=0.41 CPU=66% i-switched=19 v-switched=3681
+wall=0.52 user=0.00 system=0.33 CPU=64% i-switched=33 v-switched=3348
+wall=0.55 user=0.00 system=0.44 CPU=80% i-switched=47 v-switched=3170
+wall=0.54 user=0.00 system=0.42 CPU=78% i-switched=63 v-switched=2948
+
+Reading and writing using SCHED_OTHER with 50 simultaneous processes...
+wall=1.70 user=0.00 system=1.91 CPU=112% i-switched=226 v-switched=18326
+wall=1.60 user=0.00 system=1.60 CPU=100% i-switched=232 v-switched=18441
+wall=1.56 user=0.02 system=1.40 CPU=90% i-switched=199 v-switched=18354
+wall=1.41 user=0.00 system=1.13 CPU=80% i-switched=183 v-switched=17778
+wall=1.75 user=0.02 system=1.74 CPU=100% i-switched=222 v-switched=17325
+
+Reading and writing using SCHED_OTHER with 100 simultaneous processes...
+wall=2.39 user=0.06 system=2.18 CPU=93% i-switched=369 v-switched=35729
+wall=2.39 user=0.02 system=2.20 CPU=93% i-switched=313 v-switched=36768
+wall=2.76 user=0.01 system=3.47 CPU=125% i-switched=397 v-switched=34510
+wall=3.32 user=0.04 system=4.71 CPU=143% i-switched=373 v-switched=36447
+wall=3.35 user=0.03 system=5.73 CPU=171% i-switched=422 v-switched=34107
+
+Reading and writing using SCHED_RR with 10 simultaneous processes...
+wall=0.29 user=0.00 system=0.09 CPU=30% i-switched=2 v-switched=2018
+wall=0.26 user=0.01 system=0.06 CPU=27% i-switched=2 v-switched=2017
+wall=0.40 user=0.00 system=0.10 CPU=26% i-switched=2 v-switched=2996
+wall=0.39 user=0.01 system=0.07 CPU=22% i-switched=2 v-switched=3021
+wall=0.26 user=0.00 system=0.05 CPU=22% i-switched=2 v-switched=2014
+
+Reading and writing using SCHED_RR with 50 simultaneous processes...
+wall=1.13 user=0.03 system=0.38 CPU=37% i-switched=2 v-switched=14602
+wall=0.80 user=0.04 system=0.16 CPU=25% i-switched=3 v-switched=10323
+wall=0.80 user=0.06 system=0.15 CPU=26% i-switched=2 v-switched=10459
+wall=0.85 user=0.05 system=0.19 CPU=29% i-switched=3 v-switched=10342
+wall=1.18 user=0.04 system=0.73 CPU=65% i-switched=2 v-switched=15322
+
+Reading and writing using SCHED_RR with 100 simultaneous processes...
+wall=1.95 user=0.09 system=0.72 CPU=41% i-switched=2 v-switched=29547
+wall=1.89 user=0.06 system=0.96 CPU=53% i-switched=2 v-switched=30410
+wall=1.59 user=0.10 system=0.34 CPU=28% i-switched=2 v-switched=24980
+wall=1.75 user=0.12 system=0.36 CPU=27% i-switched=2 v-switched=32911
+wall=1.91 user=0.10 system=0.74 CPU=44% i-switched=2 v-switched=29929
+
+============================
+Testing Mixed Process
+Calculating pi over 1000 iterations using SCHED_FIFO with 10 simultaneous processes...
+wall=2.61 user=0.02 system=1.11 CPU=43% i-switched=2 v-switched=29079
+wall=1.67 user=0.00 system=0.55 CPU=33% i-switched=2 v-switched=20306
+wall=2.86 user=0.01 system=1.26 CPU=44% i-switched=2 v-switched=29789
+wall=1.75 user=0.00 system=0.58 CPU=33% i-switched=2 v-switched=20071
+wall=2.76 user=0.08 system=1.46 CPU=55% i-switched=2 v-switched=26162
+
+Calculating pi over 1000 iterations using SCHED_FIFO with 50 simultaneous processes...
+wall=10.76 user=0.08 system=6.09 CPU=57% i-switched=2 v-switched=166176
+wall=10.69 user=0.14 system=5.23 CPU=50% i-switched=2 v-switched=152868
+wall=9.94 user=0.06 system=6.59 CPU=67% i-switched=2 v-switched=150552
+wall=6.85 user=0.01 system=2.45 CPU=36% i-switched=2 v-switched=103370
+wall=10.47 user=0.01 system=5.24 CPU=50% i-switched=2 v-switched=146447
+
+Calculating pi over 1000 iterations using SCHED_FIFO with 100 simultaneous processes...
+wall=18.41 user=0.18 system=21.42 CPU=117% i-switched=3 v-switched=291114
+wall=17.08 user=0.12 system=15.01 CPU=88% i-switched=2 v-switched=291787
+wall=17.38 user=0.10 system=13.60 CPU=78% i-switched=2 v-switched=294785
+wall=18.18 user=0.15 system=17.30 CPU=95% i-switched=2 v-switched=309629
+wall=17.86 user=0.18 system=18.64 CPU=105% i-switched=2 v-switched=287234
+
+Calculating pi over 1000 iterations using SCHED_OTHER with 10 simultaneous processes...
+wall=4.33 user=0.14 system=5.03 CPU=119% i-switched=327 v-switched=36093
+wall=4.10 user=0.25 system=3.86 CPU=100% i-switched=306 v-switched=36737
+wall=4.06 user=0.09 system=3.70 CPU=93% i-switched=184 v-switched=36625
+wall=4.20 user=0.08 system=4.08 CPU=99% i-switched=249 v-switched=34816
+wall=4.36 user=0.24 system=4.42 CPU=106% i-switched=282 v-switched=35944
+
+Calculating pi over 1000 iterations using SCHED_OTHER with 50 simultaneous processes...
+wall=17.28 user=0.26 system=22.66 CPU=132% i-switched=1856 v-switched=177186
+wall=15.70 user=0.21 system=18.22 CPU=117% i-switched=1966 v-switched=180725
+wall=17.09 user=0.22 system=21.41 CPU=126% i-switched=2289 v-switched=180355
+wall=17.64 user=0.24 system=22.89 CPU=131% i-switched=2247 v-switched=181757
+wall=13.46 user=0.16 system=11.22 CPU=84% i-switched=1880 v-switched=184376
+
+Calculating pi over 1000 iterations using SCHED_OTHER with 100 simultaneous processes...
+wall=20.83 user=0.21 system=19.51 CPU=94% i-switched=2715 v-switched=372140
+wall=22.74 user=0.30 system=22.47 CPU=100% i-switched=2657 v-switched=367768
+wall=26.27 user=0.35 system=36.08 CPU=138% i-switched=2943 v-switched=360699
+wall=27.74 user=0.43 system=41.80 CPU=152% i-switched=2948 v-switched=358161
+wall=25.36 user=0.29 system=31.67 CPU=126% i-switched=2866 v-switched=370638
+
+Calculating pi over 1000 iterations using SCHED_RR with 10 simultaneous processes...
+wall=1.59 user=0.00 system=0.56 CPU=35% i-switched=2 v-switched=20034
+wall=1.78 user=0.01 system=0.64 CPU=36% i-switched=2 v-switched=22414
+wall=1.73 user=0.00 system=0.59 CPU=34% i-switched=2 v-switched=22646
+wall=1.63 user=0.00 system=0.56 CPU=34% i-switched=2 v-switched=20079
+wall=2.86 user=0.01 system=1.50 CPU=53% i-switched=7 v-switched=29875
+
+Calculating pi over 1000 iterations using SCHED_RR with 50 simultaneous processes...
+wall=9.51 user=0.10 system=6.67 CPU=71% i-switched=7 v-switched=144201
+wall=9.06 user=0.06 system=4.57 CPU=51% i-switched=7 v-switched=139917
+wall=10.12 user=0.09 system=4.20 CPU=42% i-switched=3 v-switched=183373
+wall=10.33 user=0.12 system=7.26 CPU=71% i-switched=14 v-switched=150838
+wall=9.85 user=0.08 system=4.90 CPU=50% i-switched=7 v-switched=151080
+
+Calculating pi over 1000 iterations using SCHED_RR with 100 simultaneous processes...
+wall=18.33 user=0.14 system=17.75 CPU=97% i-switched=25 v-switched=309056
+wall=17.57 user=0.21 system=19.11 CPU=109% i-switched=22 v-switched=288403
+wall=16.43 user=0.15 system=12.89 CPU=79% i-switched=22 v-switched=309137
+wall=16.75 user=0.13 system=16.33 CPU=98% i-switched=26 v-switched=300658
+wall=17.56 user=0.21 system=17.53 CPU=101% i-switched=25 v-switched=301790
+
