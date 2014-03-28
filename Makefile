@@ -23,6 +23,9 @@ pi-sched: pi-sched.o
 rw-sched: rw-sched.o rwinput
 	$(CC) $(LFLAGS) rw-sched.o -o $@ -lm
 
+mix-sched: mix-sched.o 
+	$(CC) $(LFLAGS) mix-sched.o -o $@ -lm
+
 rr_quantum: rr_quantum.o
 	$(CC) $(LFLAGS) $^ -o $@ -lm
 
@@ -35,6 +38,9 @@ pi-sched.o: pi-sched.c
 rw-sched.o: rw-sched.c
 	$(CC) $(CFLAGS) $<
 
+mix-sched.o: mix-sched.c
+	$(CC) $(CFLAGS) $<
+	
 rwinput: Makefile
 	dd if=/dev/urandom of=./rwinput bs=$(INPUTBLOCKSIZEBYTES) count=$(INPUTBLOCKS)
 
