@@ -48,7 +48,7 @@ rr_quantum.o: rr_quantum.c
 	$(CC) $(CFLAGS) $<
 
 clean: testclean
-	rm -f pi pi-sched rw rr_quantum
+	rm -f pi pi-sched rw-sched mix-sched rr_quantum
 	rm -f rwinput
 	rm -f *.o
 	rm -f *~
