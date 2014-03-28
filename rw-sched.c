@@ -24,7 +24,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <sched.h>
-
+#include <errno.h>
 
 /* Local Defines */
 #define MAXFILENAMELENGTH 80
@@ -269,7 +269,7 @@ int main(int argc, char* argv[]){
     } else if(pid > 0) {
       printf("Forked child %d", pid);
     } else {
-      fprintf(stderr, "Forking failed");
+      perror("Forking failed: ");
       exit(EXIT_FAILURE);
     }
   }
