@@ -8,8 +8,8 @@
 # Modify Date: 2014/03/28
 # Description:
 
-ITERATIONS=100000000
-BYTESTOCOPY=102400
+ITERATIONS=100
+BYTESTOCOPY=10240
 BLOCKSIZE=1024
 TIMEFORMAT="wall=%e user=%U system=%S CPU=%P i-switched=%c v-switched=%w"
 MAKE="make -s"
@@ -31,7 +31,7 @@ echo Testing CPU Intensive Process
 for SCHED in SCHED_FIFO SCHED_OTHER SCHED_RR; do
   for FORKS in 10 50 100; do
     echo Calculating pi over $ITERATIONS iterations using $SCHED with $FORKS simultaneous processes...
-    /usr/bin/time -f "$TIMEFORMAT" ./pi-sched $ITERATIONS $SCHED $FORKS > /dev/null
+    /usr/bin/time -f "$TIMEFORMAT" sudo ./pi-sched $ITERATIONS $SCHED $FORKS > /dev/null
   done
 done
 
@@ -39,7 +39,7 @@ echo Testing I/O Intensive Process
 for SCHED in SCHED_FIFO SCHED_OTHER SCHED_RR; do
   for FORKS in 10 50 100; do
     echo Reading and writing using $SCHED with $FORKS simultaneous processes...
-    /usr/bin/time -f "$TIMEFORMAT" ./rw $BYTESTOCOPY $BLOCKSIZE $SCHED $FORKS > /dev/null
+    /usr/bin/time -f "$TIMEFORMAT" sudo ./rw-sched $BYTESTOCOPY $BLOCKSIZE $SCHED $FORKS > /dev/null
   done
 done
 
@@ -47,6 +47,6 @@ echo Testing Mixed Process
 for SCHED in SCHED_FIFO SCHED_OTHER SCHED_RR; do
   for FORKS in 10 50 100; do
     echo Calculating pi over $ITERATIONS iterations using $SCHED with $FORKS simultaneous processes...
-    /usr/bin/time -f "$TIMEFORMAT" ./mix-sched 1000 $SCHED $FORKS > /dev/null
+    /usr/bin/time -f "$TIMEFORMAT" sudo ./mix-sched 1000 $SCHED $FORKS > /dev/null
   done
 done
