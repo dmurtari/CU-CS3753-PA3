@@ -53,11 +53,21 @@ rw:
 ./rw <#Bytes to Write to Output File> <Block Size>
 ./rw <#Bytes to Write to Output File> <Block Size> <Scheduling Policy>
 ./rw <#Bytes to Write to Output File> <Block Size> <Scheduling Policy> 
-        <Processes to Fork>
+    <Processes to Fork>
 ./rw <#Bytes to Write to Output File> <Block Size> <Scheduling Policy> 
-        <Processes to Fork> <Input Filename>
+    <Processes to Fork> <Input Filename>
 ./rw <#Bytes to Write to Output File> <Block Size> <Scheduling Policy> 
-        <Processes to Fork> <Input Filename> <Output Filename>
+    <Processes to Fork> <Input Filename> <Output Filename>
+````
+
+mix-sched:
+````
+./mix-sched
+./mix-sched <Number of Iterations>
+./mix-sched <Number of Iterations> <Scheduling Policy>
+./mix-sched <Number of Iterations> <Scheduling Policy> <Processes to Fork>
+./mix-sched <Number of Iterations> <Scheduling Policy> <Processes to Fork>
+    <Output Filename>
 ````
 
 testscript:
